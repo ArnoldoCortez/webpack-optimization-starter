@@ -1,0 +1,24 @@
+{
+  "name": "webpack-optimization-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnoldoCortez/webpack-optimization-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArnoldoCortez/webpack-optimization-starter/issues"
+  },
+  "homepage": "https://github.com/ArnoldoCortez/webpack-optimization-starter#readme",
+  "devDependencies": {
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1"
+  }
+}
