@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ArnoldoCortez/webpack-optimization-starter#readme",
   "devDependencies": {
     "webpack": "^5.76.1",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-merge": "^5.8.0"
   }
 }

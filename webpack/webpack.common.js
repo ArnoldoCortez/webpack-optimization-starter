@@ -1,10 +1,9 @@
 const path = require("path");
 
 const config = {
-  mode: "production",
-  entry: "./src",
+  entry: "./src/js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "bundle.js",
   },
 };
