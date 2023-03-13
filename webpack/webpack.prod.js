@@ -106,14 +106,27 @@ module.exports = merge(common, {
     // },
 
     // STRATEGY #2 Specifying Criteria for code splitting
+    // splitChunks: {
+    //   chunks: "all",
+    //   maxSize: 140000,
+    //   minSize: 50000,
+    //   name(module, _chunks, _cacheGroupKey) {
+    //     const filePathAsArray = module.identifier().split(path.sep);
+
+    //     return filePathAsArray[filePathAsArray.length - 1];
+    //   },
+    // },
+
+    // STRATEGY #3 Putting node_modules into its own bundle
     splitChunks: {
       chunks: "all",
-      maxSize: 140000,
-      minSize: 50000,
-      name(module, _chunks, _cacheGroupKey) {
-        const filePathAsArray = module.identifier().split(path.sep);
-
-        return filePathAsArray[filePathAsArray.length - 1];
+      maxSize: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        node_modules: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "node_modules",
+        },
       },
     },
   },
