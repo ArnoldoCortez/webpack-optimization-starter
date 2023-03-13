@@ -89,18 +89,31 @@ module.exports = merge(common, {
         ],
       }),
     ],
+    // STRATEGY #1 Extracting heavy dependencies
+    // splitChunks: {
+    //   cacheGroups: {
+    //     jquery: {
+    //       test: /[\\/]node_modules[\\/]jquery[\\/]/,
+    //       chunks: "initial",
+    //       name: "jquery",
+    //     },
+    //     bootstrap: {
+    //       test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
+    //       chunks: "initial",
+    //       name: "bootstrap",
+    //     },
+    //   },
+    // },
+
+    // STRATEGY #2 Specifying Criteria for code splitting
     splitChunks: {
-      cacheGroups: {
-        jquery: {
-          test: /[\\/]node_modules[\\/]jquery[\\/]/,
-          chunks: "initial",
-          name: "jquery",
-        },
-        bootstrap: {
-          test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
-          chunks: "initial",
-          name: "bootstrap",
-        },
+      chunks: "all",
+      maxSize: 140000,
+      minSize: 50000,
+      name(module, _chunks, _cacheGroupKey) {
+        const filePathAsArray = module.identifier().split(path.sep);
+
+        return filePathAsArray[filePathAsArray.length - 1];
       },
     },
   },
