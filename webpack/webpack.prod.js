@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 const glob = require("glob");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const {
   cssRule,
   cssModuleRule,
@@ -32,6 +33,48 @@ module.exports = merge(common, {
               },
             },
           ],
+        },
+      }),
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            // Lossless optimization with custom option
+            // Feel free to experiment with options for better result for you
+            plugins: [
+              ["imagemin-mozjpeg", { quality: 40 }],
+              [
+                "imagemin-pngquant",
+                {
+                  quality: [0.65, 0.9],
+                  speed: 4,
+                },
+              ],
+              ["imagemin-gifsicle", { interlaced: true }],
+              [
+                "imagemin-svgo",
+                {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                          addAttributesToSVGElement: {
+                            params: {
+                              attributes: [
+                                { xmlns: "http://www.w3.org/2000/svg" },
+                              ],
+                            },
+                          },
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
         },
       }),
     ],
