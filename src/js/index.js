@@ -1,11 +1,11 @@
+import "../styles/vendors.scss";
+import "../styles/index.scss";
 import {
   onLoadEventHandler,
   newTodoEventHandler,
   removeTodoEventHandler,
   toggleTodoEventListener,
 } from "./event-handlers";
-
-import "../styles/index.scss";
 
 window.addEventListener("load", onLoadEventHandler);
 document.addEventListener("change", function (event) {
