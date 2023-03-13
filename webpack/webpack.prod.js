@@ -10,6 +10,7 @@ const {
   cssModuleRule,
   lessRule,
   sassRule,
+  imageRule,
 } = require("./rules/webpack-prod-rules.js");
 
 module.exports = merge(common, {
@@ -36,7 +37,7 @@ module.exports = merge(common, {
     ],
   },
   module: {
-    rules: [cssRule, cssModuleRule, lessRule, sassRule],
+    rules: [cssRule, cssModuleRule, lessRule, sassRule, imageRule],
   },
   plugins: [
     new MiniCssExtractPlugin({

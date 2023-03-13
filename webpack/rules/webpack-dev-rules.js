@@ -30,7 +30,7 @@ const sassRule = {
   use: ["style-loader", "css-loader", "sass-loader"],
 };
 
-const assetRule = {
+const imageRule = {
   test: /\.(png|jpg|svg)$/,
   type: "asset",
   parser: {
@@ -48,5 +48,5 @@ module.exports = {
   cssModuleRule,
   lessRule,
   sassRule,
-  assetRule,
+  imageRule,
 };

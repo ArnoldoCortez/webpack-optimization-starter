@@ -6,7 +6,7 @@ const {
   cssModuleRule,
   lessRule,
   sassRule,
-  assetRule,
+  imageRule,
 } = require("./rules/webpack-dev-rules.js");
 
 module.exports = merge(common, {
@@ -29,6 +29,6 @@ module.exports = merge(common, {
     liveReload: false,
   },
   module: {
-    rules: [cssRule, cssModuleRule, lessRule, sassRule, assetRule],
+    rules: [cssRule, cssModuleRule, lessRule, sassRule, imageRule],
   },
 });
