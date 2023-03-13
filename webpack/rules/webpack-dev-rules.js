@@ -30,9 +30,23 @@ const sassRule = {
   use: ["style-loader", "css-loader", "sass-loader"],
 };
 
+const assetRule = {
+  test: /\.(png|jpg|svg)$/,
+  type: "asset",
+  parser: {
+    dataUrlCondition: {
+      maxSize: 10 * 1024,
+    },
+  },
+  generator: {
+    filename: "./images/[name][ext]",
+  },
+};
+
 module.exports = {
   cssRule,
   cssModuleRule,
   lessRule,
   sassRule,
+  assetRule,
 };
