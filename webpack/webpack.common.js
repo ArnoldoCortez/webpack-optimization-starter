@@ -9,6 +9,9 @@ const config = {
     path: path.resolve(__dirname, "../dist"),
     // clean: true,
   },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
   module: {
     rules: [
       {
@@ -16,7 +19,7 @@ const config = {
         use: [{ loader: "html-loader" }],
       },
       {
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
