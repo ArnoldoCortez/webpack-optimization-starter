@@ -118,6 +118,19 @@ module.exports = merge(common, {
     // },
 
     // STRATEGY #3 Putting node_modules into its own bundle
+    // splitChunks: {
+    //   chunks: "all",
+    //   maxSize: Infinity,
+    //   minSize: 0,
+    //   cacheGroups: {
+    //     node_modules: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       name: "node_modules",
+    //     },
+    //   },
+    // },
+
+    // STRATEGY #4 Create a js bundle for each dependency
     splitChunks: {
       chunks: "all",
       maxSize: Infinity,
@@ -125,7 +138,13 @@ module.exports = merge(common, {
       cacheGroups: {
         node_modules: {
           test: /[\\/]node_modules[\\/]/,
-          name: "node_modules",
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1];
+
+            return packageName;
+          },
         },
       },
     },
