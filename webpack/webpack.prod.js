@@ -2,6 +2,12 @@ const common = require("./webpack.common.js");
 const { merge } = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const {
+  cssRule,
+  cssModuleRule,
+  lessRule,
+  sassRule,
+} = require("./rules/webpack-prod-rules.js");
 
 module.exports = merge(common, {
   mode: "production",
@@ -27,36 +33,7 @@ module.exports = merge(common, {
     ],
   },
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        exclude: /\.module\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.css$/,
-        include: /\.module\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                localIdentName: "[hash:base64]",
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
-      },
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-    ],
+    rules: [cssRule, cssModuleRule, lessRule, sassRule],
   },
   plugins: [
     new MiniCssExtractPlugin({
