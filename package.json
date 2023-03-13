@@ -59,6 +59,7 @@
   "dependencies": {
     "@emotion/css": "^11.10.6",
     "bootstrap": "^5.2.3",
+    "jquery": "^3.6.4",
     "jss": "^10.10.0",
     "jss-preset-default": "^10.10.0",
     "lodash-es": "^4.17.21"
