@@ -2,7 +2,6 @@ import { renderTodos, clearNewTodoInput, getTodoId } from "./ui";
 import { getAllTodos, addTodo, removeTodo, updateTodo } from "./data";
 import { capitalize } from "lodash-es";
 import { trim } from "./helpers";
-import $ from "jquery";
 
 export function onLoadEventHandler() {
   renderTodos(getAllTodos());
@@ -21,7 +20,10 @@ export function newTodoEventHandler(event) {
 }
 
 export function removeTodoEventHandler(event) {
-  import("bootstrap" /* webpackChunkName: "bootstrap" */).then(({ Modal }) => {
+  Promise.all([
+    import("bootstrap" /* webpackChunkName: "bootstrap" */),
+    import("jquery" /* webpackChunkName: "jquery" */),
+  ]).then(({ Modal }, { default: $ }) => {
     const id = getTodoId(event.target);
     $("#modal-delete-button").data("todo-id", id);
     const deleteTodoModal = Modal.getOrCreateInstance(
@@ -32,7 +34,10 @@ export function removeTodoEventHandler(event) {
 }
 
 export function confirmRemoveEventHanlder(event) {
-  import("bootstrap" /* webpackChunkName: "bootstrap" */).then(({ Modal }) => {
+  Promise.all([
+    import("bootstrap" /* webpackChunkName: "bootstrap" */),
+    import("jquery" /* webpackChunkName: "jquery" */),
+  ]).then(({ Modal }, { default: $ }) => {
     const id = $("#modal-delete-button").data("todo-id");
     removeTodo(id);
     renderTodos(getAllTodos());
